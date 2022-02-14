@@ -4,16 +4,15 @@ const inquirer = require("inquirer");
 const cTable = require('console.table')
 
 
-
-const connection = mysql.createConnection(
-    {
-    host: 'localhost',
-    //  username
-    user: 'root',
-    //  password / db name
-    password: '',
-    database: "employeeDB"
-  });
+// Connect to database
+const connection = mysql.createConnection({
+  host: 'localhost',
+  // Your MySQL username,
+  user: 'root',
+  // Your MySQL password
+  password: '',
+  database: 'employeeDB'
+});
   
   runPrompt();
 
