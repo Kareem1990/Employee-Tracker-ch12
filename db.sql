@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS employeeDB;
-CREATE database employeeDB;
+DROP DATABASE IF EXISTS employeedb;
+CREATE database employeedb;
 
-USE employeeDB;
+USE employeedb; 
 
 CREATE TABLE department (
   id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -24,53 +24,53 @@ CREATE TABLE employee (
 );
 
 INSERT INTO department (id, name)
-VALUES (1, "Sales");
-
-INSERT INTO department (name)
-VALUES ("Engineering");
-
-INSERT INTO department (name)
 VALUES ("Finance");
 
 INSERT INTO department (name)
-VALUES ("Legal");
+VALUES ("IT");
+
+INSERT INTO department (name)
+VALUES ("HR");
+
+INSERT INTO department (name)
+VALUES ("sales");
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (1,"Senior Sales",100000,1);
+VALUES (1,"IT senior",100000,1);
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (2,"Junior Sales",60000,1);
+VALUES (2,"Junior sales",60000,1);
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (3,"Tech Lead",100000,2);
+VALUES (3,"FInance lead",100000,2);
 
 INSERT INTO role (id, title, salary, department_id)
 VALUES (4,"Software Engineer",80000,2);
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (5,"Financial Advisor",100000,3);
+VALUES (5,"Tech lead",100000,3);
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (6,"Accountant",80000,3);
+VALUES (6,"Sales lead",80000,3);
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (7,"Senior Attorney",100000,4);
+VALUES (7,"Engineering lead",100000,4);
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (8,"Associate Attorney",80000,4);
+VALUES (8,"General Manager",80000,4);
 
 -- EMPLOYEES
 INSERT INTO employee (id, first_name, last_name, role_id)
-VALUES (1,"Edmond","Harrington",1);
+VALUES (1,"Chris","Evan",1);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (2,"Scott","McConnell",2,1);
+VALUES (2,"Riener","John",2,1);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (3,"Emily","Miller",2,1);
+VALUES (3,"Leonardo","Dicaprio",2,1);
 
 INSERT INTO employee (id, first_name, last_name, role_id)
-VALUES (4,"Lino","Bouchard",3);
+VALUES (4,"leon","Bouchard",3);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (5,"William","Darnell",4,4);

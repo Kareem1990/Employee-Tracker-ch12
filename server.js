@@ -2,16 +2,16 @@ const mysql = require('mysql2');
 const inquirer = require("inquirer");
 // const db = require("./db");
 const cTable = require('console.table')
+// const express = require("express")
+
 
 
 // Connect to database
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
   host: 'localhost',
-  // Your MySQL username,
   user: 'root',
-  // Your MySQL password
-  password: '',
-  database: 'employeeDB'
+  password: 'Bomber1990',
+  database: 'employeedb',
 });
   
   runPrompt();
@@ -24,17 +24,13 @@ const connection = mysql.createConnection({
         name: "start",
         message: "What would you like to do?",
         choices: [
-          new inquirer.Separator(),
           "View departments",
           "View roles",
           "View employees",
-          new inquirer.Separator(),
           "Add department",
           "Add role",
           "Add employee",
-          new inquirer.Separator(),
           "Update employee",
-          new inquirer.Separator(),
           "Exit"
         ]
       })
@@ -70,14 +66,14 @@ const connection = mysql.createConnection({
             break;
   
           case "Exit":
-            connection.end();
+            db.end();
             break;
         }
       });
   }
   // Create fxns for each case. should be *recursive*.
   function viewDepartments() {
-    const query = connection.query("SELECT * FROM department", function (err, res) {
+    const query = db.query("SELECT * FROM department", function (err, res) {
       if (err) throw err;
       console.table(res);
       runPrompt();
@@ -85,7 +81,7 @@ const connection = mysql.createConnection({
     )
   }
   function viewRoles() {
-    const query = connection.query("SELECT * FROM role", function (err, res) {
+    const query = db.query("SELECT * FROM role", function (err, res) {
       if (err) throw err;
       console.table(res);
       runPrompt();
@@ -93,7 +89,7 @@ const connection = mysql.createConnection({
     )
   }
   function viewEmployees() {
-    const query = connection.query("SELECT * FROM employee", function (err, res) {
+    const query = db.query("SELECT * FROM employee", function (err, res) {
       if (err) throw err;
       console.table(res);
       runPrompt();
@@ -120,7 +116,7 @@ const connection = mysql.createConnection({
       ])
       .then(function (res) {
         // when finished prompting, insert a new item into the db with that info
-        connection.query(
+        db.query(
           "INSERT INTO department SET ?",
           {
             id: res.id,
@@ -162,7 +158,7 @@ const connection = mysql.createConnection({
         }
       ])
       .then(function (res) {
-        connection.query(
+        db.query(
           "INSERT INTO role SET ?",
           {
             id: res.id,
@@ -212,7 +208,7 @@ const connection = mysql.createConnection({
   
       ])
       .then(function (res) {
-        connection.query(
+        db.query(
           "INSERT INTO employee SET ?",
           {
             id: res.id,
@@ -247,7 +243,7 @@ const connection = mysql.createConnection({
   
       }
     ]).then(function (res) {
-      const query = connection.query(
+      const query = db.query(
         "UPDATE employee SET ? WHERE ?",
         [
           {
